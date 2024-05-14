@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-    test for the amenity model.
+Test for the Amenity model.
 """
 
 import unittest
@@ -11,26 +11,30 @@ from models.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
     """
-        Testing Amenity class
+    Testing Amenity class.
     """
 
     def test_Amenity_inheritence(self):
         """
-            tests that the Amenity class Inherits from BaseModel
-        """        new_amenity = Amenity()
+        Test that the Amenity class inherits from BaseModel.
+        """
+        new_amenity = Amenity()
         self.assertIsInstance(new_amenity, BaseModel)
 
     def test_Amenity_attributes(self):
         """
-            Test that Amenity class had name attribute.
+        Test that the Amenity class has a 'name' attribute.
         """
         new_amenity = Amenity()
         self.assertTrue("name" in new_amenity.__dir__())
 
     def test_Amenity_attribute_type(self):
         """
-            Test that Amenity class had name attribute's type.
+        Test that the Amenity class's 'name' attribute is of type str.
         """
         new_amenity = Amenity()
         name_value = getattr(new_amenity, "name")
         self.assertIsInstance(name_value, str)
+
+if __name__ == "__main__":
+    unittest.main()
