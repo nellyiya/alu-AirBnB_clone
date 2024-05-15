@@ -2,6 +2,7 @@
 
 This project is the first step towards building an AirBnB clone, focusing on creating a command interpreter.
 
+
 ## Description
 
 The command interpreter will manage AirBnB objects, including creating new objects, retrieving objects from files or databases, performing operations on objects, updating attributes, and destroying objects.
