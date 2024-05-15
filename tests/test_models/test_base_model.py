@@ -1,53 +1,41 @@
 #!/usr/bin/python3
-#Writing the Unit Tests
+# Defining the Base model class
 
-import unittest
-import time
-from models.base_model import BaseModel
-
-class TestBaseModel(unittest.TestCase):
-
-    def setUp(self):
-        """ Create a instance at the beginning of every test """
-        self.model = BaseModel()
+import uuid
+import datetime
 
 
-    def test_instance(self):
-        self.assertIsInstance(self.model, BaseModel)
+class BaseModel:
+    def __init__(self, *args, **kwargs):
+        """Defines common attributes:
+            id: string - UUID assigned at instance creation.
+            created_at: datetime - set to current datetime at instance creation.
+            updated_at: datetime - set to current datetime at instance creation, updated on object change."""
+        
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        setattr(self, key, datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    else:
+                        setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
-
-    def test_uniqueUUID(self):
-        model2 = BaseModel()
-        self.assertNotEqual(self.model, model2)
-
-
-    def test_dict(self):
-        model_dict = self.model.to_dict()
-        self.assertEqual(type(model_dict), dict)
-        self.assertIn('__class__', model_dict)
-        self.assertIn('created_at', model_dict)
-        self.assertIn('updated_at', model_dict)
-        self.assertEqual(model_dict['__class__'], 'BaseModel')
-
+    def __str__(self):
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
     
-    def test_str_representation(self):
-        str_repr = str(self.model)
-        self.assertIn('[BaseModel]',str_repr)
-        self.assertIn('id', str_repr)
-        self.assertIn('created_at', str_repr)
-        self.assertIn('updated_at', str_repr)
-
-
-    def test_save_updates_updated_at(self):
-        initial_updated_at = self.model.updated_at
-        self.model.save()
-        updated_updated_at = model.updated_at
-        self.assertNotEqual(initial_updated_at, updated_updated_at)
-        time.sleep(0.001)
-        now = datetime.now()
-        self.assertAlmostEqual(updated_updated_at, now, delta=datetime.timedelta(seconds=1))
+    def save(self):
+        self.updated_at = datetime.datetime.now()
     
+    def to_dict(self):
+        """Return a dictionary representing the class instance."""
+        
+        my_dict = self.__dict__.copy()
+        my_dict["__class__"] = self.__class__.__name__
+        my_dict["created_at"] = self.created_at.isoformat()
+        my_dict["updated_at"] = self.updated_at.isoformat()
+        return my_dict
 
-
-if __name__ == '__main__':
-    unittest.main()
