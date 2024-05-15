@@ -2,21 +2,11 @@
 
 This project is the first step towards building an AirBnB clone, focusing on creating a command interpreter.
 
+
 ## Description
 
 The command interpreter will manage AirBnB objects, including creating new objects, retrieving objects from files or databases, performing operations on objects, updating attributes, and destroying objects.
 
-## Learning Objectives
-
-- Create a Python package
-- Implement a command interpreter in Python using the `cmd` module
-- Understand Unit testing and implement it in a large project
-- Serialize and deserialize a Class
-- Write and read a JSON file
-- Manage datetime
-- Utilize UUID
-- Handle `*args` and `**kwargs`
-- Manage named arguments in a function
 
 ## Requirements
 
