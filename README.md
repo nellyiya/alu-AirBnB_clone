@@ -35,3 +35,9 @@ The command interpreter will manage AirBnB objects, including creating new objec
 - [unittest module](https://docs.python.org/3/library/unittest.html)
 - [args/kwargs](https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists)
 - [Python test cheatsheet](https://www.pythonsheets.com/notes/python-tests.html)
+
+## How to Run the Code
+1. Clone the repository.
+   ```bash
+   git clone https://github.com/nellyiya/alu-AirBnB_clone.git
+
