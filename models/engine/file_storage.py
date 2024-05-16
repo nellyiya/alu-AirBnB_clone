@@ -110,7 +110,7 @@ class FileStorage:
                          "text": str}
         }
         return attributes
-from models.engine.file_storage import FileStorage
+# from models.engine.file_storage import FileStorage
 
-storage = FileStorage()
-storage.reload()
+# storage = FileStorage()
+# storage.reload()
